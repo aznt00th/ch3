@@ -1,0 +1,53 @@
+/* Farenheit to Celsius
+*/
+#include <stdio.h>
+#define F2CTranslate -32
+#define F2CDilate 5.0/9
+#define M2K 1.609
+#define P2G 0.454
+#define C2FTranslate 32
+#define C2FDilate 9.0/5
+
+int
+main(int argc, char *argv[]) {
+	double input, output;
+	char c;
+	printf("Enter value to convert: ");
+	scanf("%lf %c", &input, &c);
+	switch(c) {
+		case 'f':
+		case 'F':
+			output = (input + F2CTranslate)*F2CDilate;
+			printf("%.2f Farenheit is %.2f Celsius\n", input, output);
+			break;
+		case 'C':
+		case 'c':
+			output = input*C2FDilate + C2FTranslate;
+			printf("%.2f Celsius is %.2f Farenheit\n", input, output);
+			break;
+		case 'k':
+		case 'K':
+			output = input/M2K;
+			printf("%.2f Kilometres is %.2f Miles\n", input, output);
+			break;
+		case 'm':
+		case 'M':
+			output = input*M2K;
+			printf("%.2f Miles is %.2f Kilometres\n", input, output);
+			break;
+		case 'p':
+		case 'P':
+			output = input*P2G;
+			printf("%.2f Pounds is %.2f Kilograms\n", input, output);
+			break;
+		case 'g':
+		case 'G':
+			output = input/P2G;
+			printf("%.2f Kilograms is %.2f Pounds\n", input, output);
+			break;
+		default:
+			printf("Invalid units, accepted units are Farenheit(f), Celsius(c), Kilometres(k), \n Miles(m), Pounds(p) and Kilograms(g)\n");
+			break;
+	}
+	return 0;
+}
