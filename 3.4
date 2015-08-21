@@ -1,0 +1,40 @@
+/* 3.4, probably shouldnt use case, break;
+*/
+#include <stdio.h>
+#define shortmonth 30
+#define longmonth 31
+
+int
+main(int argc, char *argv[]) {
+	int d, m ,y, length_of_feb, currentmonth;
+	printf("Enter date in format dd/mm/yyyy: ");
+	scanf("%d/%d/%d", &d, &m, &y);
+	printf("Date read: %02d/%02d/%04d\n", d, m, y);
+	length_of_feb = 28 + (y%4==0 && (y%100!=0 || y%400==0));
+	switch (m){
+		case 2:
+			currentmonth = length_of_feb;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			currentmonth = shortmonth;
+			break;
+		default:
+			currentmonth = longmonth;
+			break;
+	}if (d==currentmonth) {
+		if (m==12){
+			y+=1;
+			m=1;
+			d=1;
+		}else {
+			m+=1;
+			d=1;
+		}
+	}else{
+		d+=1;
+	}printf("Tomorrow: %02d/%02d/%04d\n", d, m, y);
+	return 0;
+}
