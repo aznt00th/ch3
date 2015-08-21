@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>
+#define importantvalue 0
+
+int
+main(int argc, char *argv[]) {
+	double a, b, c, solution, discriminant;
+	printf("Enter a, b and c: ");
+	scanf("%lf %lf %lf", &a, &b, &c);
+	printf("When a = %.2f, b = %.2f and c = %.2f,\n", a ,b ,c);
+	discriminant = b*b - 4*a*c;
+	if (a==0){
+		solution= -c/b;
+		printf("The root is %.2f\n", solution);
+	}else if (discriminant<0){
+		printf("There is no rational solution\n");
+	}else if(discriminant == 0){
+		solution = -b/(2*a);
+		printf("The root is %.2f\n", solution);
+	}else if (b==0){
+		solution = sqrt(discriminant)/(2*a);
+		printf("The roots are %.2f and %.2f\n", -solution, solution);
+	}else {
+		solution = sqrt(discriminant)/(2*a);
+		printf("The roots are %.2f and %.2f\n", (-b/(2*a)-solution), (-b/(2*a)+solution));
+	}return 0;
+}
