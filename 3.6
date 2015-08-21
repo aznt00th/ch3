@@ -1,0 +1,76 @@
+/* quite messy, better version made in a future chapter
+*/
+#include <stdio.h>
+#define importantvalue 0
+
+int
+main(int argc, char *argv[]) {
+	int x, fifty, twenty, ten, five, two, one, no_of_coins;
+	fifty = twenty = ten = five = two = one = 0;
+	printf("Enter amount in cents: ");
+	scanf("%d", &x);
+	while (x >= 50){
+		fifty+=1;
+		x-=50;
+	}while (x>=20){
+		twenty+=1;
+		x-=20;
+	}while (x>=10){
+		ten+=1;
+		x-=10;
+	}while (x>=5){
+		five+=1;
+		x-=5;
+	}while (x>=2){
+		two+=1;
+		x-=2;
+	}while (x>=1){
+		one+=1;
+		x-=1;
+	}no_of_coins = fifty+twenty+ten+five+two+one;
+	printf("The coins required to make %d cents are:\n", x);
+	while (fifty>=0){
+		if (no_of_coins>0){
+			printf("50, ");
+			fifty-=1;
+			no_of_coins-=1;
+		}else
+			printf("50");
+			fifty-=1;
+	}while (twenty>=0){
+		if (no_of_coins>0){
+			printf("20, ");
+			twenty-=1;
+			no_of_coins-=1;
+		}else
+			printf("20");
+			twenty-=1;
+	}while (ten>=0){
+		if (no_of_coins>0){
+			printf("10, ");
+			ten-=1;
+			no_of_coins-=1;
+		}else
+			printf("10");
+			ten-=1;
+	}while (five>=0){
+		if (no_of_coins>0){
+			printf("5, ");
+			five-=1;
+			no_of_coins-=1;
+		}else
+			printf("5");
+			five-=1;
+	}while (two>=0){
+		if (no_of_coins>0){
+			printf("2, ");
+			two-=1;
+			no_of_coins-=1;
+		}else
+			printf("2");
+			two-=1;
+	}if (one>0){
+		printf("1");
+	}
+	return 0;
+}
