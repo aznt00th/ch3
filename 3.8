@@ -1,0 +1,57 @@
+/* comment
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#define bracket1 18200.00
+#define bracket2 37000.00
+#define bracket3 80000.00
+#define bracket4 180000.00
+#define bracket5 250000.00
+#define bracketM 100000.00
+
+#define rate0  0.000
+#define rate1  0.190
+#define rate2  0.325
+#define rate3  0.370
+#define rate4  0.450
+#define rate5  0.475
+#define rateM1 0.015
+#define rateM2 0.025
+#define rateM3 rateM2-rateM1
+
+#define base0 0.00
+#define base1 (base0 + rate0*bracket1)
+#define base2 (base1 + rate1*(bracket2 - bracket1))
+#define base3 (base2 + rate2*(bracket3 - bracket2))
+#define base4 (base3 + rate3*(bracket4 - bracket3))
+#define base5 (base4 + rate4*(bracket5 - bracket4))
+
+int
+main(int argc, char *argv[]) {
+	double gross, tax, medicare, net;
+	printf("Enter gross salary: $");
+	if (scanf("%lf", &gross)!=1){
+		printf("No value was entered\n");
+		exit(EXIT_FAILURE);
+	}
+	if (gross <= bracket1){
+		tax = base0 + gross*rate0;
+	}else if (gross <=bracket2){
+		tax = base1 + (gross-bracket1)*rate1;
+	}else if (gross <=bracket3){
+		tax = base2 + (gross-bracket2)*rate2;
+	}else if (gross <=bracket4){
+		tax = base3 + (gross-bracket3)*rate3;
+	}else if (gross <=bracket5){
+		tax = base4 + (gross-bracket4)*rate4;
+	}else {
+		tax = base5 + (gross-bracket5)*rate5;
+	}
+	medicare = (gross<=bracketM)*rateM1*gross + (gross>bracketM)*rateM2*gross;
+	net = gross - tax - medicare;
+	printf("gross income       $%9.2f\n", gross);
+	printf("less tax           $%9.2f\n", -tax);
+	printf("less medicare      $%9.2f\n", -medicare);
+	printf("net income         $%9.2f\n", net);
+	return 0;
+}
